@@ -1,0 +1,32 @@
+syntax="proto3";
+
+package auth;
+
+option go_package="/auth";
+
+service AuthService {
+    rpc DeliverTokenByRPC(DeliverTokenReq) returns (DeliveryResp) {}
+    rpc VerifyTokenByRPC(VerifyTokenReq) returns (VerifyResp) {}
+}
+
+// 请求/响应结构优化
+message DeliverTokenReq {
+    int32 user_id = 1;
+}
+
+message DeliveryResp{
+    string access_token = 1;
+
+
+}
+
+message VerifyTokenReq {
+    string access_token = 1;
+
+
+}
+
+message VerifyResp {
+    bool res = 1;
+    string access_token = 2;
+}
